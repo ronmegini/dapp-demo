@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { BrowserProvider } from "ethers";
-import metamasklogo from "../../../assets/metamask.png";
+import metamasklogo from "./metamask.png";
+import Box from "@mui/material/Box";
+
 
 function WalletCard({ handleClick }) {
   const [provider, setProvider] = useState(null);
@@ -33,12 +35,17 @@ function WalletCard({ handleClick }) {
           Connected
         </Button>
       ) : (
-        <Button varient="contained" color="primary" onClick={connectMetamask}>
+        <Button varient="contained" onClick={connectMetamask}>
           <img src={metamasklogo} width="64" height="64" alt="metamask-logo" />
           Connect to Metamask
         </Button>
       )}
       <p>{errorMessage}</p>
+        <Box display="flex" justifyContent="center" mt={2}>
+            <Button variant="contained">
+            Mint Token
+            </Button>
+      </Box>
     </div>
   );
 }
