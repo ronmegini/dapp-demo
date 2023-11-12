@@ -7,8 +7,6 @@ async function deployContract(contractSymbol, contractInitURI, maxSupply, initia
     // Get contract
     const contract = await hre.ethers.getContractFactory(contractSymbol);
     // Upload to the blockchain
-    console.log(contractInitURI)
-    console.log(maxSupply)
     const contractInstance = await contract.deploy(contractInitURI, maxSupply, initialOwner);
     // Wait until deployed
     await contractInstance.deployed();
