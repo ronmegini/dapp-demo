@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Blockchain Stocks Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronmegini/stocks_on_the_blockchain.git"
+  },
+  "author": "Ron Megini",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ronmegini/stocks_on_the_blockchain/issues"
+  },
+  "homepage": "https://github.com/ronmegini/stocks_on_the_blockchain#readme",
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@openzeppelin/contracts": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "hardhat": "^2.14.0",
+    "nft.storage": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
