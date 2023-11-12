@@ -10,7 +10,6 @@ const CONTRACT_SYMBOL = 'FDA';
 const DESCRIPTION = 'Freediving animal';
 const MAX_SUPPLY = 30;
 const IMAGE_URI = 'https://i.ibb.co/0DY8JRM/freediving-Animal.png';
-const INITIAL_OWNER = process.env.WALLET_PUBLIC_KEY;
 
 // Deploy metadata to nft.storage
 async function uploadMetadata(contractName, description, imageURI) {
@@ -35,7 +34,7 @@ async function compileContract(contractName) {
 // Deploy the contract to the blockchain
 async function deployContractToBlockchain(symbol, initialURI, supply) {
     try {
-        const contractAddress = await deployContract(symbol, initialURI, supply, INITIAL_OWNER);
+        const contractAddress = await deployContract(symbol, initialURI, supply);
         return contractAddress;
     } catch (error) {
         throw new Error(`Contract deployment failed for ${CONTRACT_NAME}: ${error.message}`);

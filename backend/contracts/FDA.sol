@@ -3,18 +3,14 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Pausable.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
 contract FDA is ERC1155, Ownable, Pausable, ERC1155Supply {
     uint256 public constant id = 1;
     uint256 public maxSupply;
 
-    constructor(
-        string memory initURI,
-        uint256 initMaxSupply,
-        address initialOwner
-    ) ERC1155(initURI) Ownable(initialOwner) {
+    constructor(string memory initURI, uint256 initMaxSupply) ERC1155(initURI) {
         setMaxSupply(initMaxSupply);
     }
 
@@ -31,20 +27,22 @@ contract FDA is ERC1155, Ownable, Pausable, ERC1155Supply {
         _mint(msg.sender, id, 1, "");
     }
 
-    function _update(
-        address from,
-        address to,
-        uint256[] memory ids,
-        uint256[] memory values
-    ) internal override(ERC1155, ERC1155Supply) {
-        super._update(from, to, ids, values);
-    }
-
     function pause() public onlyOwner {
         _pause();
     }
 
     function unpause() public onlyOwner {
         _unpause();
+    }
+
+    function _beforeTokenTransfer(
+        address operator,
+        address from,
+        address to,
+        uint256[] memory ids,
+        uint256[] memory amounts,
+        bytes memory data
+    ) internal override(ERC1155, ERC1155Supply) whenNotPaused {
+        super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
     }
 }
