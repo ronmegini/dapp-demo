@@ -26,9 +26,9 @@ contract FDA is ERC1155, Ownable, Pausable, ERC1155Supply {
         _setURI(newuri);
     }
 
-    function mintStocks(address account, uint256 amount) public whenNotPaused {
-        require(totalSupply(id) + amount <= maxSupply, "Max supply reached");
-        _mint(msg.sender, id, amount, "");
+    function mint() public whenNotPaused {
+        require(totalSupply(id) < maxSupply, "Max supply reached");
+        _mint(msg.sender, id, 1, "");
     }
 
     function _update(
